@@ -9,16 +9,14 @@ services:
       - "8080:8080"
     depends_on:
       - db
-    environment:
-      - DATABASE_URL=postgres://postgres:postgres@db:5432/mydatabase
     command: sh -c "npm run build && node dist/src/index.js"
 
   db:
     image: postgres:13
     restart: always
     environment:
-      - POSTGRES_USER=postgres
-      - POSTGRES_PASSWORD=postgres
+      - POSTGRES_USER=usr_pg
+      - POSTGRES_PASSWORD=pw_pg
       - POSTGRES_DB=mydatabase
     volumes:
       - db-data:/var/lib/postgresql/data
