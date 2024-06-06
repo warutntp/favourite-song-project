@@ -8,17 +8,19 @@ ENV LANG en_US.UTF8
 # Set the working directory inside the container
 WORKDIR /app
 
-# Install Prisma CLI
-RUN npm install -g prisma
+# # Install Prisma CLI
+# RUN npm install -g prisma
 
 # Copy package.json and package-lock.json
 COPY package*.json ./
 
-# Install dependencies 
-RUN npm install 
+# Install dependencies (including Prisma CLI)
+RUN npm install && npm install -D prisma
 
 # Copy the rest of your application code
 COPY . .
+
+RUN npx prisma generate 
 
 # Copy SQL scripts 
 COPY scripts/create_tables.sql scripts/insert_data.sql ./docker-entrypoint-initdb.d/

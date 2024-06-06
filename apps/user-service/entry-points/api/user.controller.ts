@@ -1,9 +1,10 @@
 import { NextFunction, Request, Response } from "express";
 import {
-  createUser,
   updateUser,
+  createUser,
   deleteUser,
-  getUser,
+  getUserById,
+  getUsers,
 } from "../../domain/user.service";
 
 export const createUserController = async (
@@ -51,7 +52,20 @@ export const getUserController = async (
   next: NextFunction
 ) => {
   try {
-    const user = await getUser(parseInt(req.params.userId));
+    const user = await getUserById(parseInt(req.params.userId));
+    res.status(200).json(user);
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const getUsersController = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const user = await getUsers();
     res.status(200).json(user);
   } catch (error) {
     next(error);

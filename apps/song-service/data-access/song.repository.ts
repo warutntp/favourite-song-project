@@ -3,7 +3,7 @@ const pool = new Pool();
 
 export const createSong = async (data: { name: string }) => {
   const result = await pool.query(
-    'INSERT INTO "Song" (name, "createdAt", "updatedAt") VALUES ($1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP) RETURNING *',
+    'INSERT INTO "Song" (name, "created_at", "updated_at") VALUES ($1, CURRENT_TIMESTAMP, CURRENT_TIMESTAMP) RETURNING *',
     [data.name]
   );
   return result.rows[0];
@@ -11,7 +11,7 @@ export const createSong = async (data: { name: string }) => {
 
 export const updateSong = async (songId: number, data: { name?: string }) => {
   const result = await pool.query(
-    'UPDATE "Song" SET name = $1, "updatedAt" = CURRENT_TIMESTAMP WHERE id = $2 RETURNING *',
+    'UPDATE "Song" SET name = $1, "updated_at" = CURRENT_TIMESTAMP WHERE id = $2 RETURNING *',
     [data.name, songId]
   );
   return result.rows[0];

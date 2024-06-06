@@ -1,25 +1,39 @@
-model user {
-    id        Int         @id @default(autoincrement())
+datasource db {
+    provider = "postgresql"
+    url      = env("DATABASE_URL")
+}
+
+generator client {
+    provider = "prisma-client-js"
+}
+
+model User {
+    id        Int        @id @default(autoincrement())
     name      String?
-    email     String      @unique
-    createdAt DateTime    @default(now())
-    updatedAt DateTime    @updatedAt
-    songs     user_song[]
+    email     String     @unique
+    createdAt DateTime   @default(now()) @map("created_at")
+    updatedAt DateTime   @updatedAt @map("updated_at")
+    songs     userSong[]
+
+    @@map("users")
 }
 
-model song {
-    id        Int         @id @default(autoincrement())
+model Song {
+    id        Int        @id @default(autoincrement())
     name      String
-    createdAt DateTime    @default(now())
-    updatedAt DateTime    @updatedAt
-    users     user_song[]
+    createdAt DateTime   @default(now()) @map("created_at")
+    updatedAt DateTime   @updatedAt @map("updated_at")
+    users     userSong[]
+
+    @@map("songs")
 }
 
-model user_song {
+model userSong {
     userId Int
     songId Int
-    user   user @relation(fields: [userId], references: [id], onDelete: Cascade)
-    song   song @relation(fields: [songId], references: [id], onDelete: Cascade)
+    user   User @relation(fields: [userId], references: [id], onDelete: Cascade)
+    song   Song @relation(fields: [songId], references: [id], onDelete: Cascade)
 
     @@id([userId, songId])
+    @@map("user_songs")
 }

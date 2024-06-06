@@ -13,6 +13,10 @@ export const deleteSong = async (songId: number) => {
   await prisma.song.delete({ where: { id: songId } });
 };
 
-export const getSong = async (songId: number) => {
+export const getSongById = async (songId: number) => {
   return await prisma.song.findUnique({ where: { id: songId } });
+};
+
+export const getSongs = async () => {
+  return await prisma.song.findMany();
 };

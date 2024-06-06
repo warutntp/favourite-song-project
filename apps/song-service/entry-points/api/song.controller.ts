@@ -3,7 +3,8 @@ import {
   createSong,
   updateSong,
   deleteSong,
-  getSong,
+  getSongById,
+  getSongs,
 } from "../../domain/song.service";
 
 export const createSongController = async (
@@ -51,7 +52,20 @@ export const getSongController = async (
   next: NextFunction
 ) => {
   try {
-    const song = await getSong(parseInt(req.params.songId));
+    const song = await getSongById(parseInt(req.params.songId));
+    res.status(200).json(song);
+  } catch (error) {
+    next(error);
+  }
+};
+
+export const getSongsController = async (
+  req: Request,
+  res: Response,
+  next: NextFunction
+) => {
+  try {
+    const song = await getSongs();
     res.status(200).json(song);
   } catch (error) {
     next(error);
