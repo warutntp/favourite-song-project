@@ -3,7 +3,7 @@ import {
   addFavoriteSong,
   removeFavoriteSong,
   getFavoriteSongs,
-} from "../../domain/user-song.service";
+} from "../data-access/user-song.service";
 
 export const addUserSongController = async (
   req: Request,

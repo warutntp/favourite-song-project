@@ -5,7 +5,7 @@ import {
   deleteSong,
   getSongById,
   getSongs,
-} from "../../domain/song.service";
+} from "../data-access/song.service";
 
 export const createSongController = async (
   req: Request,

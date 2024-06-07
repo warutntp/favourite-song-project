@@ -5,7 +5,7 @@ import {
   deleteUser,
   getUserById,
   getUsers,
-} from "../../domain/user.service";
+} from "../data-access/user.service";
 
 export const createUserController = async (
   req: Request,

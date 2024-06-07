@@ -3,7 +3,7 @@ import {
   addUserSongController,
   deleteUserSongController,
   getUserSongsController,
-} from "./user-song.controller";
+} from "../domain/user-song.controller";
 
 const router = Router();
 

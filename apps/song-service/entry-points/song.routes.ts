@@ -5,7 +5,7 @@ import {
   deleteSongController,
   getSongController,
   getSongsController,
-} from "./song.controller";
+} from "../domain/song.controller";
 
 const router = Router();
 

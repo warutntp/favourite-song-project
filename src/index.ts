@@ -1,7 +1,7 @@
 import express from "express";
-import userRoutes from "../apps/user-service/entry-points/api/user.routes";
-import songRoutes from "../apps/song-service/entry-points/api/song.routes";
-import userSongRoutes from "../apps/user-song-service/entry-points/api/user-song.routes";
+import userRoutes from "../apps/user-service/entry-points/user.routes";
+import songRoutes from "../apps/song-service/entry-points/song.routes";
+import userSongRoutes from "../apps/user-song-service/entry-points/user-song.routes";
 import errorHandler from "./middleware/errorHandler";
 
 const app = express();
